@@ -176,6 +176,7 @@ float FindPos(float*a, int low, int high)
 
 
 /*一阶低通滤波器*/
+//公式：y(n) = a*x(n) + (1 - a)*y(n-1)
 float LPF_1st_Filter(LPF_Filter_1st_t *lpf, float input)
 {
     lpf->x = input;
@@ -186,7 +187,8 @@ float LPF_1st_Filter(LPF_Filter_1st_t *lpf, float input)
 }
 
 
-/*二阶IIR直接II型低通滤波器*/
+/*二阶IIR直接II型巴特沃斯低通滤波器*/
+//公式：y(n) = [b0*x(n) + b1*x(n-1) + b2*x(n-2) - a1*y(n-1) - a2*y(n-2)]/a0
 float IIR_2st_Filter(IIR_Filter_2st_t *iir, float input)
 {
     iir->x[2] = input;
@@ -204,7 +206,8 @@ float IIR_2st_Filter(IIR_Filter_2st_t *iir, float input)
     return iir->y[2];
 }
 
-/*四阶IIR直接II型低通滤波器*/
+/*四阶IIR直接II型巴特沃斯低通滤波器*/
+//公式：y(n) = [b0*x(n) + b1*x(n-1) + b2*x(n-2) + b3*x(n-3) + b4*x(n-4) - a1*y(n-1) - a2*y(n-2) - a3*y(n-3) - a4*y(n-4)]/a0
 float IIR_4st_Filter(IIR_Filter_4st_t *iir, float input)
 {
     iir->x[4] = input;
